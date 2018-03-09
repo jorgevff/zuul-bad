@@ -34,7 +34,7 @@ public class Game
      */
     private void createRooms()
     {
-        Room cabaña, tienda, salaTrofeos, lago, rio, costa;
+        Room cabaña, tienda, salaTrofeos, lago, rio, costa, acantilado;
       
         // create the rooms
         cabaña = new Room("Me encuentro en mi cabaña para una fructifera jornada!!");
@@ -43,14 +43,17 @@ public class Game
         lago = new Room("ya estoy en el lago, voy a realizar un intento...");
         rio = new Room("ya estoy en el rio, voy a realizar un intento...");
         costa = new Room("ya estoy en el mar, voy a realizar un intento...");
+        acantilado = new Room("Me caigo!!!!");
         
         // initialise room exits
-        cabaña.setExits(null, tienda, salaTrofeos, null);
-        tienda.setExits(costa, null, rio, cabaña);
-        salaTrofeos.setExits(cabaña, null, null, null);
-        lago.setExits(null, null, null, rio);
-        rio.setExits(tienda, lago, null, null);
-        costa.setExits(null, null, tienda, null);
+        cabaña.setExits(null, tienda, salaTrofeos, null, null);
+        tienda.setExits(costa, null, rio, cabaña, null);
+        salaTrofeos.setExits(cabaña, null, null, null, null);
+        lago.setExits(null, null, null, rio, null);
+        rio.setExits(tienda, lago, null, null, null);
+        costa.setExits(null, null, tienda, null, acantilado);
+        
+        
 
         currentRoom = cabaña;  // start game outside
     }
@@ -158,6 +161,9 @@ public class Game
         if(direction.equals("west")) {
             nextRoom = currentRoom.westExit;
         }
+        if(direction.equals("southEast")) {
+            nextRoom = currentRoom.southEastExit;
+        }
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
@@ -205,6 +211,9 @@ public class Game
         }
         if(currentRoom.westExit != null) {
             System.out.print("west ");
+        }
+        if(currentRoom.southEastExit !=null){
+            System.out.print("southEast");
         }
         System.out.println();
         
