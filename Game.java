@@ -46,15 +46,20 @@ public class Game
         acantilado = new Room("Estoy en el acantilado, casi me caigo!!!!");
         
         // initialise room exits
-        cabania.setExits(null, tienda, null, null, null, salaTrofeos);
-        tienda.setExits(costa, null, rio, cabania, null, null);
-        salaTrofeos.setExits(null, null, null, null, cabania, null);
-        lago.setExits(null, null, null, rio, null, null);
-        rio.setExits(tienda, lago, null, null, null, null);
-        costa.setExits(null, null, tienda, null, acantilado, null);
+        
+        cabania.setExit("east", tienda);
+        cabania.setExit("northWest", salaTrofeos);
+        tienda.setExit("north", costa);
+        tienda.setExit("south", rio);
+        tienda.setExit("west", cabania);
+        salaTrofeos.setExit("southEast", cabania);
+        lago.setExit("west", rio);
+        rio.setExit("north", tienda);
+        rio.setExit("east", lago);
+        costa.setExit("south", tienda);
+        costa.setExit("southEast", acantilado);
         
         
-
         currentRoom = cabania;  // start game outside
     }
 
