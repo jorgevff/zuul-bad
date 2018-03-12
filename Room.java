@@ -111,5 +111,17 @@ public class Room
         return salida;
     }
 
+    /**
+     * Return a long description of this room, of the form:
+     *     You are in the 'name of room'
+     *     Exits: north west southwest
+     * @return A description of the room, including exits.
+     */
+    public String getLongDescription()
+    {
+        String descripccion = "You are " + description;
+        descripccion = descripccion + ".\n" + getExitString();
+        return descripccion;
+    }
 
 }
