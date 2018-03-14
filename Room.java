@@ -18,7 +18,7 @@ public class Room
 {
     private HashMap<String, Room> salidas;
     private String description;
-    ;
+    
 
     /**
      * Create a room described "description". Initially, it has
@@ -88,7 +88,7 @@ public class Room
      */
     public String getExitString()
     {
-        String salida = "";
+        String salida = "Salidas: ";
         if(salidas.get("north") != null) {
             salida = salida + "north ";
         }
@@ -109,6 +109,7 @@ public class Room
         }
 
         return salida;
+        //return salidas.get(description);
     }
 
     /**

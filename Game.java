@@ -19,7 +19,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-        
+
     /**
      * Create the game and initialise its internal map.
      */
@@ -35,7 +35,7 @@ public class Game
     private void createRooms()
     {
         Room cabania, tienda, salaTrofeos, lago, rio, costa, acantilado;
-      
+
         // create the rooms
         cabania = new Room("Me encuentro en mi cabaña para una fructifera jornada!!");
         tienda = new Room("en la tienda del pueblo, necesito cebo");
@@ -44,9 +44,9 @@ public class Game
         rio = new Room("ya estoy en el rio, voy a realizar un intento...");
         costa = new Room("ya estoy en el mar, voy a realizar un intento...");
         acantilado = new Room("Estoy en el acantilado, casi me caigo!!!!");
-        
+
         // initialise room exits
-        
+
         cabania.setExit("east", tienda);
         cabania.setExit("northWest", salaTrofeos);
         tienda.setExit("north", costa);
@@ -58,8 +58,7 @@ public class Game
         rio.setExit("east", lago);
         costa.setExit("south", tienda);
         costa.setExit("southEast", acantilado);
-        
-        
+
         currentRoom = cabania;  // start game outside
     }
 
@@ -72,7 +71,7 @@ public class Game
 
         // Enter the main command loop.  Here we repeatedly read commands and
         // execute them until the game is over.
-                
+
         boolean finished = false;
         while (! finished) {
             Command command = parser.getCommand();
@@ -117,6 +116,9 @@ public class Game
         }
         else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
+        }
+        else if (commandWord.equals("look")) {
+            look();
         }
 
         return wantToQuit;
@@ -179,18 +181,28 @@ public class Game
             return true;  // signal that we want to quit
         }
     }
-    
+
     /**
      * Imprime la localizacion en el momento actual e informa donde podemos desplazarmos.
      * Este método no lleva parametros
      */
-    
+
     private void printLocationInfo()
     {
-        
+
         System.out.println(currentRoom.getLongDescription());
-        
+
         System.out.println();
-        
+
+    }
+
+    /**
+     * Metodo que muestra donde estamos situados en el momento actual
+     * el metodo no tiene parametros
+     */
+
+    private void look() 
+    {
+        System.out.println(currentRoom.getLongDescription());
     }
 }
