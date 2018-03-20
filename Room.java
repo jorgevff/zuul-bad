@@ -18,6 +18,7 @@ public class Room
 {
     private HashMap<String, Room> salidas;
     private String description;
+    private Item objetoCaptura;
     
 
     /**
@@ -26,10 +27,11 @@ public class Room
      * "an open court yard".
      * @param description The room's description.
      */
-    public Room(String description) 
+    public Room(String description, Item nuevaCaptura) 
     {
         this.description = description;
         salidas = new HashMap<String ,Room>();
+        objetoCaptura = nuevaCaptura;
     }
 
     /**
@@ -122,6 +124,10 @@ public class Room
     {
         String descripccion = "You are " + description;
         descripccion = descripccion + ".\n" + getExitString();
+        if(objetoCaptura != null){
+            descripccion = descripccion + "He obtenido una captura: " + objetoCaptura.getDescripcion() + ". Peso: " + objetoCaptura.getPeso();
+        }
+        
         return descripccion;
     }
 

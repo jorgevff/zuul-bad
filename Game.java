@@ -37,13 +37,13 @@ public class Game
         Room cabania, tienda, salaTrofeos, lago, rio, costa, acantilado;
 
         // create the rooms
-        cabania = new Room("Me encuentro en mi cabaña para una fructifera jornada!!");
-        tienda = new Room("en la tienda del pueblo, necesito cebo");
-        salaTrofeos = new Room("En la sala de Trofeos");
-        lago = new Room("ya estoy en el lago, voy a realizar un intento...");
-        rio = new Room("ya estoy en el rio, voy a realizar un intento...");
-        costa = new Room("ya estoy en el mar, voy a realizar un intento...");
-        acantilado = new Room("Estoy en el acantilado, casi me caigo!!!!");
+        cabania = new Room("Me encuentro en mi cabaña para una fructifera jornada!!", null);
+        tienda = new Room("en la tienda del pueblo, necesito cebo", new Item("gusarapines", 0.05f));
+        salaTrofeos = new Room("En la sala de Trofeos", null);
+        lago = new Room("ya estoy en el lago, voy a realizar un intento...", new Item("Salmonete", 1.30f));
+        rio = new Room("ya estoy en el rio, voy a realizar un intento...", new Item("Barbo", 0.75f));
+        costa = new Room("ya estoy en el mar, voy a realizar un intento...", new Item("Lubina", 1.40f));
+        acantilado = new Room("Estoy en el acantilado, casi me caigo!!!!", new Item("Roca", 0.60f));
 
         // initialise room exits
 
@@ -140,7 +140,7 @@ public class Game
         System.out.println("around at the university.");
         System.out.println();
         System.out.println("Your command words are:");
-        parser.showCommands();
+        System.out.println(parser.showCommands());
     }
 
     /** 
