@@ -37,27 +37,49 @@ public class Game
         Room cabania, tienda, salaTrofeos, lago, rio, costa, acantilado;
 
         // create the rooms
-        cabania = new Room("Me encuentro en mi cabaña para una fructifera jornada!!", null);
-        tienda = new Room("en la tienda del pueblo, necesito cebo", new Item("gusarapines", 0.05f));
-        salaTrofeos = new Room("En la sala de Trofeos", null);
-        lago = new Room("ya estoy en el lago, voy a realizar un intento...", new Item("Salmonete", 1.30f));
-        rio = new Room("ya estoy en el rio, voy a realizar un intento...", new Item("Barbo", 0.75f));
-        costa = new Room("ya estoy en el mar, voy a realizar un intento...", new Item("Lubina", 1.40f));
-        acantilado = new Room("Estoy en el acantilado, casi me caigo!!!!", new Item("Roca", 0.60f));
+        cabania = new Room("Me encuentro en mi cabaña para una fructifera jornada!!");
+        tienda = new Room("en la tienda del pueblo, necesito cebo");
+        salaTrofeos = new Room("En la sala de Trofeos");
+        lago = new Room("ya estoy en el lago, voy a realizar un intento...");
+        rio = new Room("ya estoy en el rio, voy a realizar un intento...");
+        costa = new Room("ya estoy en el mar, voy a realizar un intento...");
+        acantilado = new Room("Estoy en el acantilado, casi me caigo!!!!");
 
         // initialise room exits
 
         cabania.setExit("east", tienda);
         cabania.setExit("northWest", salaTrofeos);
+        
+        
         tienda.setExit("north", costa);
         tienda.setExit("south", rio);
         tienda.setExit("west", cabania);
+        tienda.addItem(new Item("Gusarapines", 0.30f));
+        tienda.addItem(new Item("Artificial", 0.45f));
+        tienda.addItem(new Item("Sedal monofilamento", 0.100f));
+        
+        
+        
         salaTrofeos.setExit("southEast", cabania);
+        
         lago.setExit("west", rio);
+        lago.addItem(new Item("Perca", 3.60f));
+        lago.addItem(new Item("Siluto", 11.75f));
+        
+        
         rio.setExit("north", tienda);
         rio.setExit("east", lago);
+        rio.addItem(new Item("Lucio", 7.60f));
+        rio.addItem(new Item("Salmon", 3.50f));
+        rio.addItem(new Item("Trucha", 1.80f));
+        rio.addItem(new Item("Cangrejo Rojo", 0.50f));
+        
         costa.setExit("south", tienda);
         costa.setExit("southEast", acantilado);
+        costa.addItem(new Item("Roca", 0.60f));
+        costa.addItem(new Item("Lubina", 4.34f));
+        costa.addItem(new Item("Pulpo", 3.80f));
+        
 
         currentRoom = cabania;  // start game outside
     }
