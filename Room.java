@@ -128,17 +128,17 @@ public class Room
      */
     public String getLongDescription()
     {
-        String descripccion = "You are " + description;
-        descripccion = descripccion + ".\n" + getExitString() + "\n";
+        String descripcion = "You are " + description;
+        descripcion = descripcion + ".\n" + getExitString() + "\n";
         for(Item captura : objetosCaptura){
             String nuevaCaptura = captura.getDescripcion();
             float nuevoPeso = captura.getPeso();
             if(objetosCaptura != null){
-                descripccion = descripccion + " - Captura: " + nuevaCaptura + ". Peso: " + nuevoPeso + " kg" + ".\n";
+                descripcion = descripcion + " - Captura: " + nuevaCaptura + ". Peso: " + nuevoPeso + " kg" + ".\n";
             }
         }
 
-        return descripccion;
+        return descripcion;
     }
 
 }

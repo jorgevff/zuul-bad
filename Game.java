@@ -19,6 +19,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
+    private Room anteriorUbicacion;
 
     /**
      * Create the game and initialise its internal map.
@@ -49,37 +50,33 @@ public class Game
 
         cabania.setExit("east", tienda);
         cabania.setExit("northWest", salaTrofeos);
-        
-        
+
         tienda.setExit("north", costa);
         tienda.setExit("south", rio);
         tienda.setExit("west", cabania);
         tienda.addItem(new Item("Gusarapines", 0.30f));
         tienda.addItem(new Item("Artificial", 0.45f));
         tienda.addItem(new Item("Sedal monofilamento", 0.100f));
-        
-        
+
         
         salaTrofeos.setExit("southEast", cabania);
-        
+
         lago.setExit("west", rio);
         lago.addItem(new Item("Perca", 3.60f));
         lago.addItem(new Item("Siluto", 11.75f));
-        
-        
+
         rio.setExit("north", tienda);
         rio.setExit("east", lago);
         rio.addItem(new Item("Lucio", 7.60f));
         rio.addItem(new Item("Salmon", 3.50f));
         rio.addItem(new Item("Trucha", 1.80f));
         rio.addItem(new Item("Cangrejo Rojo", 0.50f));
-        
+
         costa.setExit("south", tienda);
         costa.setExit("southEast", acantilado);
         costa.addItem(new Item("Roca", 0.60f));
         costa.addItem(new Item("Lubina", 4.34f));
         costa.addItem(new Item("Pulpo", 3.80f));
-        
 
         currentRoom = cabania;  // start game outside
     }
@@ -145,6 +142,9 @@ public class Game
         else if (commandWord.equals("eat")){
             eat();
         }
+        else if (commandWord.equals("back")){
+            back();
+        }
 
         return wantToQuit;
     }
@@ -186,6 +186,7 @@ public class Game
             System.out.println("There is no door!");
         }
         else {
+            anteriorUbicacion = currentRoom;
             currentRoom = nextRoom;
             printLocationInfo();
         }
@@ -230,12 +231,23 @@ public class Game
     {
         System.out.println(currentRoom.getLongDescription());
     }
-    
+
     /**
      * Metodo que imprime un mensaje de comer
      */
     private void eat() 
     {
         System.out.println("You have eaten now and you are not hungry any more");
+    }
+
+    /**
+     * Metodo que vuelve a la sala anterior, si esta en la sala inicial no se mueve
+     */
+    private void back()
+    {
+        if(anteriorUbicacion != null){
+            currentRoom = anteriorUbicacion; 
+            System.out.println(currentRoom.getLongDescription());
+        }
     }
 }
